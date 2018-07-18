@@ -1,0 +1,285 @@
+/* CSS VARIABLES BEGIN */
+/* Whatever is created in root is used within the whole stylesheet
+and not just certain elements */
+:root {
+	--primary: #ddd;
+	--dark: #333;
+	--light: #fff;
+	--shadow: 0 1px 5px rgba (104, 104, 104, 0.8);
+}
+/* END */
+
+/* HTML BEGIN */
+html {
+	box-sizing: border-box; /*if i use padding it doesn't affect the size
+    of the element*/
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--dark);
+}
+/* END */
+
+/* BODY BEGIN */
+body {
+	background: #ccc;
+	margin: 30px 50px;
+	line-height: 1.4;
+}
+/* END */
+
+/* BUTTON BEGIN */
+.btn {
+	background: var(--dark);
+	color: var(--light);
+	padding: 0.6rem 1.3rem; /* rem is easier to customize. 1rem = 16px */
+	text-decoration: none;
+	border: 0;
+}
+/* END */
+
+/* IMAGES BEGIN */
+img {
+	max-width: 100%; /* keeps images in their container */
+}
+/* END */
+
+/* WRAPPER BEGIN */
+.wrapper {
+	display: grid;
+	grid-gap: 20px; /*won't have to manually assign margin pixels */
+}
+/* END */
+
+/* _________________________________________________________ */
+
+/* NAVIGATION BEGIN */
+.main-nav ul {
+	display: grid;
+	grid-gap: 20px;
+	padding: 0; /* ul's have padding by default so we need to get rid of it */
+	list-style: none; /* don't want bullets */
+	grid-template-columns: repeat(
+		4,
+		1fr
+	); /* We have 4 columns so we will split
+    the size between them by 1 fraction or 1fr */
+}
+/* END */
+
+/* LINK BEGIN */
+.main-nav a {
+	background: var(--primary); /* --primary is the color we set earlier */
+	display: block;
+	text-decoration: none;
+	padding: 0.8rem;
+	text-align: center;
+	color: var(--dark);
+	text-transform: uppercase;
+	font-size: 1.1rem;
+	box-shadow: var(--shadow);
+}
+/* END */
+
+/* LINK HOVER BEGIN */
+.main-nav a:hover {
+	background: var(--dark);
+	color: var(--light);
+}
+/* END */
+
+/* _________________________________________________________ */
+/* TOP CONTAINER BEGIN */
+.top-container {
+	display: grid;
+	grid-gap: 20px;
+	grid-template-areas: 'showcase showcase top-box-a' 'showcase showcase top-box-b';
+	/* This just sets template areas we didn't assign them yet.  
+    There are 3 columns represented in the above showcase is one 
+    colum, showcase is a second column, and top-box-a is a third. 
+    The grid is 2 dimensional and also allows us to create 
+    multiple rows in addition to columns.  In this case we have 2 
+    rows of top-box-a and top-box-b.*/
+}
+/* END */
+
+/* SHOWCASE GRID BEGIN */
+.showcase {
+	grid-area: showcase; /* Letting CSS know what 'showcase' is above by
+    assigning it here */
+	min-height: 400px;
+	background-image: url(../img/pexels-photo.jpg); /* PAIN IN THE ASS TO GET THIS PHOTO
+    TO LOAD! ADDING ../ WAS KEY FOR NEXT TIME */
+	background-size: cover;
+	background-position: center;
+	padding: 3rem; /* 3rem = 48px because 16x3=48 */
+	/* We will now use FLEXBOX to align things inside my grid that I created
+    with CSS */
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	box-shadow: var(--shadow);
+}
+/* END */
+
+/* SHOWCASE H1 BEGIN */
+.showcase h1 {
+	font-size: 4rem;
+	margin-bottom: 0;
+	color: var(--light);
+}
+/* END */
+
+/* SHOWCASE P BEGIN */
+.showcase p {
+	font-size: 1.3rem;
+	margin-top: 0;
+	color: var(--light);
+}
+/* END */
+
+/* TOP BOXES BEGIN */
+.top-box {
+	background: var(--primary);
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	box-shadow: var(--shadow);
+	padding: 1.5rem;
+}
+
+.top-box .price {
+	font-size: 2.5rem;
+}
+
+.top-box-a {
+	grid-area: top-box-a; /* Assigning/defining the grid area we listed above */
+}
+
+.top-box-b {
+	grid-area: top-box-b;
+}
+/* END */
+/* _________________________________________________________ */
+
+/* BOXES BEGIN */
+.boxes {
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	/* Minimum of 200px and maximum of 1 fractional. Give us the 
+    option to add or subtract as needed without having to change 
+    the code */
+}
+
+.box {
+	background: var(--primary);
+	text-align: center;
+	padding: 1.5rem 2rem;
+	box-shadow: var(--shadow);
+}
+/* END */
+
+/* _________________________________________________________ */
+
+/* INFORMATION BEGIN */
+.info {
+	background: var(--primary);
+	box-shadow: var(--shadow);
+	display: grid;
+	grid-gap: 30px;
+	grid-template-columns: repeat(2, 1fr);
+	padding: 3rem;
+}
+/* END */
+
+/* _________________________________________________________ */
+
+/* PORTFOLIO BEGIN */
+.portfolio {
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.portfolio img {
+	width: 100%;
+	box-shadow: var(--shadow);
+}
+/* END */
+
+/* _________________________________________________________ */
+
+/* FOOTER BEGIN */
+footer {
+	margin-top: 2rem;
+	background: var(--dark);
+	color: var(--light);
+	text-align: center;
+	padding: 1rem;
+}
+/* END */
+
+/* _________________________________________________________ */
+
+/*MEDIA QUERIES 700 PX BEGIN */
+@media (max-width: 700px) {
+	/* At 700px the grid template will change to below */
+	.top-container {
+		grid-template-areas: 'showcase showcase' 'top-box-a top-box-b';
+	}
+
+	.showcase h1 {
+		font-size: 2.5rem;
+		display: block;
+		text-align: center;
+		margin: auto;
+		/* At 700px the header shrinks down to 2.5rem */
+	}
+
+	.showcase p {
+		display: block;
+		text-align: center;
+		margin: auto;
+	}
+
+	.showcase .btn {
+		display: block;
+		text-align: center;
+		margin: auto;
+	}
+
+	.main-nav ul {
+		grid-template-columns: 1fr; /* At 700px the navigation 
+        extends to one per row */
+	}
+
+	.info {
+		grid-template-columns: 1fr; /* At 700px the info 
+        extends to just one big block */
+	}
+
+	.info h2 {
+		display: block;
+		text-align: center;
+		margin: auto;
+	}
+
+	.info .btn {
+		display: block;
+		text-align: center;
+		margin: auto;
+	}
+}
+/* END */
+
+/* _________________________________________________________ */
+
+/*MEDIA QUERIES 500PX BEGIN */
+@media (max-width: 500px) {
+	/* At 700px the grid template will change to below */
+	.top-container {
+		grid-template-areas: 'showcase' 'top-box-a' 'top-box-b';
+	}
+}
+/* END */
+/* _________________________________________________________ */
